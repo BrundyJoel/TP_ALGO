@@ -30,9 +30,19 @@ player_turn = 1  # 1 pour joueur 1, 2 pour joueur 2
 
 def draw_board():
     screen.fill(WHITE)
-    for i in range(1, BOARD_ROWS):
-        pygame.draw.line(screen, BLACK, (0, i * SQUARE_SIZE), (WIDTH, i * SQUARE_SIZE), LINE_WIDTH)
-        pygame.draw.line(screen, BLACK, (i * SQUARE_SIZE, 0), (i * SQUARE_SIZE, HEIGHT), LINE_WIDTH)
+    # Dessiner le carré extérieur
+    pygame.draw.line(screen, BLACK, (SQUARE_SIZE//2, SQUARE_SIZE//2), (WIDTH - SQUARE_SIZE//2, SQUARE_SIZE//2), LINE_WIDTH)
+    pygame.draw.line(screen, BLACK, (SQUARE_SIZE//2, HEIGHT - SQUARE_SIZE//2), (WIDTH - SQUARE_SIZE//2, HEIGHT - SQUARE_SIZE//2), LINE_WIDTH)
+    pygame.draw.line(screen, BLACK, (SQUARE_SIZE//2, SQUARE_SIZE//2), (SQUARE_SIZE//2, HEIGHT - SQUARE_SIZE//2), LINE_WIDTH)
+    pygame.draw.line(screen, BLACK, (WIDTH - SQUARE_SIZE//2, SQUARE_SIZE//2), (WIDTH - SQUARE_SIZE//2, HEIGHT - SQUARE_SIZE//2), LINE_WIDTH)
+    
+    # Dessiner les lignes intérieures
+    pygame.draw.line(screen, BLACK, (WIDTH//2, SQUARE_SIZE//2), (WIDTH//2, HEIGHT - SQUARE_SIZE//2), LINE_WIDTH)
+    pygame.draw.line(screen, BLACK, (SQUARE_SIZE//2, HEIGHT//2), (WIDTH - SQUARE_SIZE//2, HEIGHT//2), LINE_WIDTH)
+    
+    # Dessiner les diagonales
+    pygame.draw.line(screen, BLACK, (SQUARE_SIZE//2, SQUARE_SIZE//2), (WIDTH - SQUARE_SIZE//2, HEIGHT - SQUARE_SIZE//2), LINE_WIDTH)
+    pygame.draw.line(screen, BLACK, (WIDTH - SQUARE_SIZE//2, SQUARE_SIZE//2), (SQUARE_SIZE//2, HEIGHT - SQUARE_SIZE//2), LINE_WIDTH)
 
 def draw_pieces():
     for row in range(BOARD_ROWS):
